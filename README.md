@@ -17,7 +17,7 @@ Userscripts for Azure DevOps
 
 1. Install [the Violentmonkey extension](https://violentmonkey.github.io/) for your browser
 2. Refresh this page if you just installed this extension (or the download link won't work)
-3. [Install the userscript](#todo)
+3. [Install the userscript](https://github.com/shamrt/azdo-userscripts/raw/main/dist/index.user.js)
 
 By default, Violentmonkey will auto-update scripts from the original install location once a day. You can force an update from the extensions menu.
 
