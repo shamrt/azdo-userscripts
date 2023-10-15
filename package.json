@@ -13,6 +13,8 @@
     "dev": "rollup -wc",
     "clean": "del-cli dist",
     "lint": "eslint --ext .ts,.tsx .",
+    "format": "prettier --fix .",
+    "format:check": "prettier --check .",
     "ci": "run-s lint",
     "build:js": "rollup -c",
     "build": "cross-env NODE_ENV=production run-s ci clean build:js"
@@ -31,8 +33,6 @@
     "@violentmonkey/types": "^0.1.5",
     "babel-preset-solid": "^1.7.7",
     "del-cli": "^5.0.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.2",
@@ -40,6 +40,9 @@
     "unocss": "^0.55.2"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --fix"
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
