@@ -1,23 +1,27 @@
 {
   "name": "azdo-userscripts",
   "version": "0.0.0",
-  "description": "",
-  "author": "Shane Martin",
-  "license": "MIT",
   "private": true,
-  "engines": {
-    "node": ">=18"
-  },
+  "description": "",
+  "license": "MIT",
+  "author": "Shane Martin",
   "scripts": {
-    "prepare": "husky install",
-    "dev": "rollup -wc",
+    "build": "cross-env NODE_ENV=production run-s ci clean build:js",
+    "build:js": "rollup -c",
+    "ci": "run-s lint",
     "clean": "del-cli dist",
-    "lint": "eslint --ext .ts,.tsx .",
+    "dev": "rollup -wc",
     "format": "prettier --fix .",
     "format:check": "prettier --check .",
-    "ci": "run-s lint",
-    "build:js": "rollup -c",
-    "build": "cross-env NODE_ENV=production run-s ci clean build:js"
+    "lint": "eslint --ext .ts,.tsx .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "package.json": "sort-package-json"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
@@ -37,12 +41,10 @@
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.2",
     "rollup-plugin-userscript": "^0.2.0",
+    "sort-package-json": "^2.6.0",
     "unocss": "^0.55.2"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
+  "engines": {
+    "node": ">=18"
   }
 }
