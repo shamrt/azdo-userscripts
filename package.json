@@ -14,7 +14,8 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src",
     "lint": "eslint --ext .ts,.tsx .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "serve": "http-server -c5 dist"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -37,6 +38,7 @@
     "@violentmonkey/types": "^0.1.5",
     "babel-preset-solid": "^1.7.7",
     "del-cli": "^5.0.0",
+    "http-server": "^14.1.1",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.2",
