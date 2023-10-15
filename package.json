@@ -1,8 +1,7 @@
 {
   "name": "azdo-userscripts",
   "version": "0.0.1",
-  "private": true,
-  "description": "",
+  "description": "Makes Azure DevOps suck less.",
   "license": "MIT",
   "author": "Shane Martin",
   "scripts": {
