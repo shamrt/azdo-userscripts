@@ -1,3 +1,13 @@
+/**
+ * This is an example of using Solid.js in a userscript.
+ *
+ * Meta requirements:
+ *
+ * // @require     https://cdn.jsdelivr.net/combine/npm/@violentmonkey/dom@2,npm/@violentmonkey/ui@0.7
+ * // @require     https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2/dist/solid.js
+ * // @grant       GM_addStyle
+ */
+
 import { createSignal } from 'solid-js';
 import { render } from 'solid-js/web';
 import { getPanel, showToast } from '@violentmonkey/ui';
