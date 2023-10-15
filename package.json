@@ -23,6 +23,7 @@
       "eslint --fix",
       "prettier --write"
     ],
+    "*.md": "doctoc --github --maxlevel 3",
     "package.json": "sort-package-json"
   },
   "dependencies": {
@@ -39,6 +40,7 @@
     "@violentmonkey/types": "^0.1.5",
     "babel-preset-solid": "^1.7.7",
     "del-cli": "^5.0.0",
+    "doctoc": "^2.2.1",
     "http-server": "^14.1.1",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
