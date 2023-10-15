@@ -1,6 +1,6 @@
 {
   "name": "azdo-userscripts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "format:check": "prettier --check src",
     "lint": "eslint --ext .ts,.tsx .",
     "prepare": "husky install",
-    "release": "standard-version",
+    "release": "npm run build && git add dist/*.js && standard-version",
     "serve": "http-server -c5 dist"
   },
   "lint-staged": {
