@@ -5,6 +5,26 @@
 
 import { waitUntil } from './utils/waitUntil';
 
+/**
+ * Checks if the current PR is a feature PR that will merge into `develop`.
+ */
+const isFeaturePR = async () => {
+  await waitUntil(() => document.querySelector('.pr-header-branches'));
+
+  const prBranches = document.querySelectorAll('.pr-header-branches')[0];
+  const [sourceBranchName, targetBranchName] = Array.from(
+    prBranches.querySelectorAll('a.bolt-link'),
+  ).map((a: HTMLLinkElement) => a?.innerText);
+
+  if (!sourceBranchName || !targetBranchName) {
+    return false;
+  }
+
+  const isFeatureBranch = sourceBranchName.includes('feature/');
+  const willMergeIntoDevelop = targetBranchName === 'develop';
+  return isFeatureBranch && willMergeIntoDevelop;
+};
+
 const getAutoCompleteButton = (parentNode = document) =>
   Array.from(parentNode.querySelectorAll('button')).find(
     (button) => button.innerText === 'Set auto-complete',
@@ -66,8 +86,12 @@ const handleAutoCompleteButtonClick = () => {
   });
 };
 
-function main() {
-  hasAutoCompleteButton().then(() => {
+async function main() {
+  hasAutoCompleteButton().then(async () => {
+    if (!(await isFeaturePR())) {
+      return;
+    }
+
     const autoCompleteButton = getAutoCompleteButton();
 
     autoCompleteButton.style.border = '1px dashed grey';
