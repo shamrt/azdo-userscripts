@@ -8,6 +8,7 @@ Userscripts for Azure DevOps
 - [Getting started](#getting-started)
 - [Features](#features)
 - [Development](#development)
+  - [Release](#release)
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -35,6 +36,13 @@ $ npm run build
 
 # Lint
 $ npm run lint
+```
+
+### Release
+
+``` sh
+# Bump version and create a git tag
+$ npm run release
 ```
 
 ## Credits
