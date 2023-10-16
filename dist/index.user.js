@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @description Makes Azure DevOps suck less.
 // @match       *://dev.azure.com/*/pullrequest/*
-// @version     0.0.0
+// @version     0.0.1
 // @author      Shane Martin
 // ==/UserScript==
 
@@ -27,12 +27,6 @@ function waitUntil(condition) {
 }
 
 /**
- * Auto-selects the "Squash commit" option in the autocompletion panel after it opens.
- * @module
- */
-
-
-/**
  * Checks if the current PR is a feature PR that will merge into `develop`.
  */
 const isFeaturePR = async () => {
@@ -46,6 +40,12 @@ const isFeaturePR = async () => {
   const willMergeIntoDevelop = targetBranchName === 'develop';
   return isFeatureBranch && willMergeIntoDevelop;
 };
+
+/**
+ * Auto-selects the "Squash commit" option in the autocompletion panel after it opens.
+ * @module
+ */
+
 const getAutoCompleteButton = (parentNode = document) => Array.from(parentNode.querySelectorAll('button')).find(button => button.innerText === 'Set auto-complete');
 const hasAutoCompleteButton = () => waitUntil(getAutoCompleteButton);
 const getAutocompletionPanel = () => {
@@ -59,8 +59,6 @@ const handleAutoCompleteButtonClick = () => {
     const DESIRED_AUTOCOMPLETE_VALUE = 'Squash commit';
     const autocompletionPanel = getAutocompletionPanel();
     const autoCompleteInput = autocompletionPanel.querySelector('input[autocomplete]');
-    // const autoCompleteInputButton = autocompletionPanel.parentNode as HTMLButtonElement;
-
     autoCompleteInput.click();
     await waitUntil(() => {
       var _autoCompleteInput$at;
@@ -70,8 +68,8 @@ const handleAutoCompleteButtonClick = () => {
     await waitUntil(() => document.getElementById(menuControlsId));
     const menuControls = document.getElementById(menuControlsId);
     await waitUntil(() => menuControls.querySelectorAll('[role="option"]').length > 0);
-    const autoCompleteOption = Array.from(menuControls == null ? void 0 : menuControls.querySelectorAll('[role="option"]')).find(option => option.innerText.includes(DESIRED_AUTOCOMPLETE_VALUE));
-    autoCompleteOption.click();
+    const autoCompleteOption = Array.from(menuControls.querySelectorAll('[role="option"]')).find(option => option.innerText.includes(DESIRED_AUTOCOMPLETE_VALUE));
+    autoCompleteOption == null || autoCompleteOption.click();
     await waitUntil(() => autoCompleteInput.value === DESIRED_AUTOCOMPLETE_VALUE);
   });
 };
@@ -81,8 +79,11 @@ async function main() {
       return;
     }
     const autoCompleteButton = getAutoCompleteButton();
+    if (!autoCompleteButton) {
+      return;
+    }
     autoCompleteButton.style.border = '1px dashed grey';
-    autoCompleteButton == null || autoCompleteButton.addEventListener('click', handleAutoCompleteButtonClick);
+    autoCompleteButton.addEventListener('click', handleAutoCompleteButtonClick);
   });
 }
 main();
