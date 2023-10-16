@@ -15,7 +15,7 @@
     "format:check": "prettier --check src",
     "lint": "eslint --ext .ts,.tsx .",
     "prepare": "husky install",
-    "release": "npm run build && git add dist/*.js && standard-version",
+    "release": "standard-version && npm run build && git add dist/*.js",
     "serve": "http-server -c5 dist"
   },
   "lint-staged": {
