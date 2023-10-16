@@ -34,7 +34,6 @@ const handleAutoCompleteButtonClick = () => {
     const autoCompleteInput = autocompletionPanel.querySelector(
       'input[autocomplete]',
     ) as HTMLInputElement;
-    // const autoCompleteInputButton = autocompletionPanel.parentNode as HTMLButtonElement;
 
     autoCompleteInput.click();
 
