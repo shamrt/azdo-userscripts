@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @description Makes Azure DevOps suck less.
 // @match       *://dev.azure.com/*/pullrequest/*
-// @version     0.0.1
+// @version     0.0.3
 // @author      Shane Martin
 // ==/UserScript==
 
