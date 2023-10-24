@@ -3,6 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @description Makes Azure DevOps suck less.
 // @match       *://dev.azure.com/*/pullrequest/*
+// @match       *://*.visualstudio.com/*/pullrequest/*
 // @version     process.env.VERSION
 // @author      process.env.AUTHOR
 // ==/UserScript==
